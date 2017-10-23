@@ -1,0 +1,4 @@
+\select@language {spanish}
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{2}{section.1}
+\contentsline {section}{\numberline {2}Principio de Funcionamiento de la celda Qu\IeC {\'\i }mica.}{2}{section.2}
+\contentsline {section}{\numberline {3}Conversi\IeC {\'o}n de voltaje a pH}{3}{section.3}
