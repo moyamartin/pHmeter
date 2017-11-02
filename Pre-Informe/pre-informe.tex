@@ -6,7 +6,6 @@
 \usepackage[framed, numbered]{matlab-prettifier}
 \usepackage{caption}
 \usepackage{xcolor}
-\usepackage{circuitikz}
 \usepackage{textcomp}
 \usepackage{gensymb}
 \usepackage{fancyhdr}
@@ -16,21 +15,6 @@
 \usepackage{color}
 \usepackage{lastpage}
 \usepackage[pdfpagelabels,bookmarks,hyperindex,hyperfigures, hidelinks]{hyperref}
-\usetikzlibrary{calc,positioning, arrows, decorations.markings, patterns}
-
-%Flecha doble
-% for double arrows a la chef
-% adapt line thickness and line width, if needed
-\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
-	1 with {\arrow[semithick]{open triangle 60}}},
-double distance=1.4pt, shorten >= 5.5pt,
-preaction = {decorate},
-postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
-
-%Seteo de los tipos de bloques
-\tikzstyle{nodo} = [draw, fill = white, circle, node distance = 1.5cm, minimum size = 0.03cm]
-\tikzstyle{block} = [draw, fill = white, rectangle	, minimum height = .5cm, minimum width = .5cm]
-\tikzstyle{pelota} = [draw, fill = white, circle, node distance = 1.5cm, minimum size = 1cm]
 
 \setcounter{MaxMatrixCols}{20}
 
@@ -100,6 +84,8 @@ Nombre y Apellido & Legajo \\
 \hline 
 Martín Moya  & M-6132/8 \\
 \hline 
+Manuela Rearte & R-2599/2\\
+\hline
 Lucio Santos & S-4966/2 \\  
 \hline 
 Ana Paula Soraiz & S-4965/4\\
@@ -192,8 +178,29 @@ Por último, se plantean las siguientes especificaciones para el medidor:
 \begin{itemize}
 	\item{Rango de Medición: 0 - 14pH.}
 	\item{Resolución: $\mathrm{\pm}$0,1pH.}
+	\item {Rapidez de conversión de 1 palabra/segundo.}
 \end{itemize}
 
+Para ello se dispone del microcontrolador \texttt{Atmega 328p} que dispone de un CAD con las siguientes características:
+
+\begin{itemize}
+	\item{Conversor Analógico Digital de aproximaciones sucesivas.}
+	\item {Resolución de 10 bits.}
+	\item {Tiempo de conversión: 13 - 260 $\mathring{\mu S}$}
+	\item {7690 Palabras por segundo.}
+	\item{Voltage de entrada: 0 - $\mathrm{V_{CC}}$.}
+	\item{Generación de interrupciones al finalizar una conversión.}
+\end{itemize}
+
+Y una celda química diseñada para realizar la medición \emph{(Fig. \ref{fig3})}
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=1.5]{celda-quimica.jpg}
+	\end{center}
+	\caption{Celda química para medir pH.}
+	\label{fig3}
+\end{figure}
 
 \end{document}
 
