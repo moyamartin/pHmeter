@@ -33,11 +33,11 @@ int main(void)
     while (1) 
     {
 		Lcd8_Set_Cursor(1,0);
-		Lcd8_Write_String("pH-Meter V1.0");
-		Lcd8_Set_Cursor(2,0);
-		ph_result = ph_avg();
-		ftoa(ph_result, buffer);
-		Lcd8_Write_String(buffer);
+		Lcd8_Write_String("Hola");
+		//Lcd8_Set_Cursor(2,0);
+		//ph_result = ph_avg();
+		//ftoa(ph_result, buffer);
+		//Lcd8_Write_String(buffer);
 		_delay_ms(10);
     }
 }

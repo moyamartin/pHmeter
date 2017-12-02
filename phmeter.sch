@@ -19158,8 +19158,8 @@ Based on  the following source:
 <part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0207/10" package3d_urn="urn:adsk.eagle:package:23491/1"/>
 <part name="R3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0207/10" package3d_urn="urn:adsk.eagle:package:23491/1"/>
 <part name="R4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0207/10" package3d_urn="urn:adsk.eagle:package:23491/1" value="10k"/>
-<part name="R5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-TRIMM" device="64W" package3d_urn="urn:adsk.eagle:package:23748/1" value="10k"/>
-<part name="R6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-TRIMM" device="64W" package3d_urn="urn:adsk.eagle:package:23748/1"/>
+<part name="GAIN" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-TRIMM" device="64W" package3d_urn="urn:adsk.eagle:package:23748/1" value="10k"/>
+<part name="OFFSET" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-TRIMM" device="64W" package3d_urn="urn:adsk.eagle:package:23748/1"/>
 <part name="R7" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0207/10" package3d_urn="urn:adsk.eagle:package:23491/1" value="10k"/>
 <part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND3" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="GND" device=""/>
@@ -19176,9 +19176,7 @@ Based on  the following source:
 <part name="C7" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="C-EU" device="025-024X044" package3d_urn="urn:adsk.eagle:package:26149/1" value="22pF"/>
 <part name="C8" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="C-EU" device="025-024X044" package3d_urn="urn:adsk.eagle:package:26149/1" value="22pF"/>
 <part name="GND6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
-<part name="C9" library="resistor" library_urn="urn:adsk.eagle:library:348" deviceset="C-EU" device="025-024X044" package3d_urn="urn:adsk.eagle:package:26149/1" value="100nF"/>
 <part name="R8" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="0207/10" package3d_urn="urn:adsk.eagle:package:23491/1" value="4.7k"/>
-<part name="GND7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device=""/>
 <part name="GND8" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="GND" device=""/>
 <part name="GND9" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="GND" device=""/>
 <part name="R9" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-TRIMM" device="64W" package3d_urn="urn:adsk.eagle:package:23748/1"/>
@@ -19213,8 +19211,8 @@ Grupo 12:
 <instance part="R2" gate="G$1" x="40.64" y="162.56" rot="R180"/>
 <instance part="R3" gate="G$1" x="68.58" y="162.56"/>
 <instance part="R4" gate="G$1" x="78.74" y="147.32" rot="R180"/>
-<instance part="R5" gate="G$1" x="93.98" y="147.32" rot="R90"/>
-<instance part="R6" gate="G$1" x="55.88" y="162.56" rot="R270"/>
+<instance part="GAIN" gate="G$1" x="93.98" y="147.32" rot="R90"/>
+<instance part="OFFSET" gate="G$1" x="55.88" y="162.56" rot="R270"/>
 <instance part="R7" gate="G$1" x="73.66" y="119.38" rot="R270"/>
 <instance part="GND2" gate="1" x="73.66" y="109.22"/>
 <instance part="GND3" gate="1" x="60.96" y="7.62"/>
@@ -19231,9 +19229,7 @@ Grupo 12:
 <instance part="C7" gate="G$1" x="157.48" y="124.46" rot="R90"/>
 <instance part="C8" gate="G$1" x="157.48" y="109.22" rot="R90"/>
 <instance part="GND6" gate="1" x="147.32" y="109.22"/>
-<instance part="C9" gate="G$1" x="160.02" y="144.78" rot="R90"/>
-<instance part="R8" gate="G$1" x="170.18" y="154.94" rot="R270"/>
-<instance part="GND7" gate="1" x="149.86" y="144.78" rot="MR90"/>
+<instance part="R8" gate="G$1" x="165.1" y="144.78"/>
 <instance part="GND8" gate="1" x="139.7" y="119.38"/>
 <instance part="GND9" gate="1" x="86.36" y="81.28" rot="R270"/>
 <instance part="R9" gate="G$1" x="93.98" y="66.04" rot="MR90"/>
@@ -19302,11 +19298,6 @@ Grupo 12:
 <junction x="152.4" y="116.84"/>
 </segment>
 <segment>
-<pinref part="GND7" gate="1" pin="GND"/>
-<pinref part="C9" gate="G$1" pin="1"/>
-<wire x1="152.4" y1="144.78" x2="157.48" y2="144.78" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="GND8" gate="1" pin="GND"/>
 <wire x1="139.7" y1="124.46" x2="139.7" y2="121.92" width="0.1524" layer="91"/>
 <pinref part="C13" gate="G$1" pin="-"/>
@@ -19357,9 +19348,9 @@ Grupo 12:
 <net name="N$3" class="0">
 <segment>
 <pinref part="R4" gate="G$1" pin="1"/>
-<pinref part="R5" gate="G$1" pin="E"/>
+<pinref part="GAIN" gate="G$1" pin="E"/>
 <wire x1="83.82" y1="147.32" x2="86.36" y2="147.32" width="0.1524" layer="91"/>
-<pinref part="R5" gate="G$1" pin="S"/>
+<pinref part="GAIN" gate="G$1" pin="S"/>
 <wire x1="86.36" y1="147.32" x2="88.9" y2="147.32" width="0.1524" layer="91"/>
 <wire x1="93.98" y1="152.4" x2="86.36" y2="152.4" width="0.1524" layer="91"/>
 <wire x1="86.36" y1="152.4" x2="86.36" y2="147.32" width="0.1524" layer="91"/>
@@ -19368,7 +19359,7 @@ Grupo 12:
 </net>
 <net name="V_ADC" class="0">
 <segment>
-<pinref part="R5" gate="G$1" pin="A"/>
+<pinref part="GAIN" gate="G$1" pin="A"/>
 <wire x1="99.06" y1="147.32" x2="104.14" y2="147.32" width="0.1524" layer="91"/>
 <wire x1="104.14" y1="147.32" x2="104.14" y2="129.54" width="0.1524" layer="91"/>
 <wire x1="104.14" y1="129.54" x2="114.3" y2="129.54" width="0.1524" layer="91"/>
@@ -19378,21 +19369,21 @@ Grupo 12:
 <junction x="104.14" y="129.54"/>
 </segment>
 <segment>
-<pinref part="U1" gate="G$1" pin="PC5(ADC5/SCL)"/>
-<wire x1="223.52" y1="132.08" x2="231.14" y2="132.08" width="0.1524" layer="91"/>
-<label x="231.14" y="132.08" size="1.778" layer="95"/>
+<pinref part="U1" gate="G$1" pin="PC1(ADC1)"/>
+<wire x1="223.52" y1="142.24" x2="233.68" y2="142.24" width="0.1524" layer="91"/>
+<label x="233.68" y="142.24" size="1.778" layer="95"/>
 </segment>
 </net>
 <net name="N$6" class="0">
 <segment>
 <pinref part="R3" gate="G$1" pin="1"/>
-<pinref part="R6" gate="G$1" pin="E"/>
+<pinref part="OFFSET" gate="G$1" pin="E"/>
 <wire x1="63.5" y1="162.56" x2="60.96" y2="162.56" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$7" class="0">
 <segment>
-<pinref part="R6" gate="G$1" pin="A"/>
+<pinref part="OFFSET" gate="G$1" pin="A"/>
 <pinref part="R2" gate="G$1" pin="1"/>
 <wire x1="50.8" y1="162.56" x2="45.72" y2="162.56" width="0.1524" layer="91"/>
 </segment>
@@ -19416,7 +19407,7 @@ Grupo 12:
 <junction x="73.66" y="132.08"/>
 <wire x1="73.66" y1="147.32" x2="55.88" y2="147.32" width="0.1524" layer="91"/>
 <junction x="73.66" y="147.32"/>
-<pinref part="R6" gate="G$1" pin="S"/>
+<pinref part="OFFSET" gate="G$1" pin="S"/>
 <wire x1="55.88" y1="147.32" x2="55.88" y2="157.48" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -19464,13 +19455,9 @@ Grupo 12:
 </net>
 <net name="N$12" class="0">
 <segment>
-<pinref part="C9" gate="G$1" pin="2"/>
 <pinref part="U1" gate="G$1" pin="PC6(/RESET)"/>
-<wire x1="165.1" y1="144.78" x2="170.18" y2="144.78" width="0.1524" layer="91"/>
 <pinref part="R8" gate="G$1" pin="2"/>
 <wire x1="170.18" y1="144.78" x2="175.26" y2="144.78" width="0.1524" layer="91"/>
-<wire x1="170.18" y1="149.86" x2="170.18" y2="144.78" width="0.1524" layer="91"/>
-<junction x="170.18" y="144.78"/>
 </segment>
 </net>
 <net name="N$10" class="0">
@@ -19610,8 +19597,8 @@ Grupo 12:
 </segment>
 <segment>
 <pinref part="R8" gate="G$1" pin="1"/>
-<wire x1="170.18" y1="165.1" x2="170.18" y2="160.02" width="0.1524" layer="91"/>
-<label x="170.18" y="165.1" size="1.778" layer="95"/>
+<wire x1="154.94" y1="144.78" x2="160.02" y2="144.78" width="0.1524" layer="91"/>
+<label x="154.94" y="144.78" size="1.778" layer="95"/>
 </segment>
 <segment>
 <pinref part="IC3" gate="P" pin="V+"/>
