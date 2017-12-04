@@ -1,0 +1,171 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{circuitikz}
+\usepackage{bondgraphs}
+\usepackage{caption}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage{gensymb}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{alltt}
+\usepackage{epstopdf}
+\usepackage{color}
+\usepackage{lastpage}
+\usepackage[pdfpagelabels,bookmarks,hyperindex,hyperfigures, hidelinks]{hyperref}
+\usetikzlibrary{calc,positioning, arrows, decorations.markings, patterns}
+
+%Flecha doble
+% for double arrows a la chef
+% adapt line thickness and line width, if needed
+\tikzstyle{vecArrow} = [thick, decoration={markings,mark=at position
+	1 with {\arrow[semithick]{open triangle 60}}},
+double distance=1.4pt, shorten >= 5.5pt,
+preaction = {decorate},
+postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
+
+%Seteo de los tipos de bloques
+\tikzstyle{nodo} = [draw, fill = white, circle, node distance = 1.5cm, minimum size = 0.03cm]
+\tikzstyle{block} = [draw, fill = white, rectangle	, minimum height = .5cm, minimum width = .5cm]
+\tikzstyle{pelota} = [draw, fill = white, circle, node distance = 1.5cm, minimum size = 1cm]
+
+\setcounter{MaxMatrixCols}{20}
+
+
+\setlength{\headheight}{50pt}
+\pagestyle{fancy}
+\fancyheadoffset{0.5cm}
+\fancyhead{}
+\fancyhead[L]{\includegraphics[scale=0.125]{FCEIA-logo.png}}
+\fancyhead[C]{Universidad Nacional de Rosario\\Facultad de Ciencias Exactas, Ingeniería y Agrimensura\\Escuela de Ingeniería Electrónica}
+\fancyhead[R]{\includegraphics[scale=0.06]{LOGO-UNR-NEGRO.png}}
+
+\renewcommand{\figurename}{Fig.}
+
+\renewcommand\footrule{\begin{minipage}{1\textwidth}
+	 \hrule width \hsize   
+	\end{minipage}\par}
+
+\setlength{\footskip}{0pt}
+\fancyfoot[L]{\textit{Puente Grúa}}
+\fancyfoot[C]{}
+\fancyfoot[R]{\textit{Página \thepage{} de \pageref{LastPage}}}
+
+\DeclareGraphicsExtensions{.bmp, .png, .jpg}
+
+\renewcommand*\contentsname{Índice}
+
+\topmargin = -1cm
+\leftmargin = -1cm
+\oddsidemargin = 0cm
+\textheight = 24cm
+\textwidth = 17cm
+
+\begin{document}
+
+\begin{titlepage}
+\begin{minipage}{4cm}
+\begin{flushright}
+\includegraphics[scale=0.25]{FCEIA-logo.png}
+\end{flushright}
+\end{minipage}
+\hfill
+\begin{minipage}{4cm}
+\begin{flushleft}
+\includegraphics[scale=0.1]{LOGO-UNR-NEGRO.png}
+\end{flushleft}
+\end{minipage} \\ [10mm]
+\begin{center}
+
+ \large{ \textbf{Universidad Nacional de Rosario}} \\[5mm]
+ \textbf{Facultad de Ciencias Exactas, Ingeniería y Agrimensura} \\[5mm]
+ Escuela de Ingeniería Electrónica \\[20mm]
+ \Large {\textbf{Dinámica de los Sistemas Físicos \\(A-12)}}\\[1.5mm]
+ \small {Ingeniería Electrónica} \\[20mm]
+ \Large {\textbf{Trabajo Práctico N\degree 3}} \\[5mm]
+ \LARGE{ \textbf{Bond-Graph \\ Puente Grúa}} \\[15mm]
+
+\end{center}
+\vspace{10pt}
+	
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline 
+\multicolumn{2}{|c|}{Autores} \\ 
+\hline 
+Nombre y Apellido & Legajo \\ 
+\hline 
+Lucio Santos  & S-4966/2 \\
+\hline 
+Martín Moya & M-6132/8 \\  
+\hline 
+\end{tabular}
+\end{center}
+\vfill
+\begin{center}
+Fecha de realización: \textbf{9/06/2017} - Fecha de entrega: \textbf{16/06/2017}
+\end{center}
+
+\end{titlepage}
+
+\tableofcontents
+
+\clearpage
+
+\section{Introducción}
+
+En el siguiente trabajo se presenta el diseño de un medidor de pH destinado específicamente para plantaciones hidropónicas. En el mismo se describirá el desarrollo del producto desde sus primeras etapas hasta la manufactura del mismo, incluyendo una descripción de como calibrar el instrumento y los cuidados que se deben tener al utilizarlo.\\
+\\
+La medición de pH consiste en utilizar una celda electroquímica que entrega una \emph{fem} (Fuerza Electromotriz) proporcional al valor de pH en la solución a medir. La misma consiste de:
+
+\begin{itemize}
+	\item {Un electrodo de medición.}
+	\item {Un electrodo de referencia.}
+	\item {Y, por último, la solución a medir.}
+\end{itemize}
+
+Y la función transferencia de la celda química está dada por la siguiente expresión:
+
+\begin{equation}
+	E(T) = E\degree - 0,1984\times T \times pH \nonumber
+\end{equation}
+
+Donde $\mathrm{E\degree}$ es la suma de:
+
+\begin{itemize}
+	\item {El potencial correspondiente al electrodo de referencia.}
+	\item {El potencial dentro de la superficie de la membrana de vidrio.}
+	\item {El potencial de referencia externo.}
+	\item {El potencial de la juntura líquida.}
+\end{itemize}
+
+Considerando que la temperatura es constante (o por lo menos se puede compensar calibrando el instrumento) obtenemos una transferencia lineal. En base a esto, a través de un procesamiento analógico, podemos diseñar un sistema de conversión analógico-digital para mostrar el valor de pH correspondiente a la solución.
+
+\clearpage
+
+\section{Solución planteada}
+
+Para poder obtener una lectura del valor de pH en la solución, se planteó un sistema basado en un Conversor Analógico Digital (CAD) y un sistema de procesamiento analógico para adaptar la señal proveniente de la celda electroquímica a valores aceptables, en los cuales el CAD es capaz de convertir esta señal en un valor digital.\\
+\\
+Por último, el valor obtenido por el Conversor Analógico Digital es mostrado en un Display para que el usuario tenga un lectura directa del valor de pH en la solución.\\
+\\
+Se plantea administrar el manejo del CAD y el display mediante un microcontrolador de 8 bits debido a que muchos de estos tienen conversores analógicos-digitales integrados facilitando la implementación del mismo.\\
+\\
+En la Figura \ref{fig1} se puede observar un diagrama de bloques del sistema.
+
+\begin{figure}[h!]
+	\begin{center}
+		\begin{tikzpicture}
+			
+		\end{tikzpicture}
+	\end{center}
+\end{figure}
+
+
+
+
+\end{document}
+

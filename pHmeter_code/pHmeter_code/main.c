@@ -25,39 +25,43 @@ void ftoa(double value, char * buffer);
 int main(void)
 {	
 	double ph_result = 0.0;
-	char buffer[5];
+	char buffer[4];
 	DDRD = 0xFF;
 	DDRB = 0xFF;
 	Lcd8_Init();
 	init_adc();
+	Lcd8_Set_Cursor(1,0);
+	Lcd8_Write_String("phMeter V1.0");
+	Lcd8_Set_Cursor(2,0);
+	Lcd8_Write_String("pH: ");
     while (1) 
-    {
-		Lcd8_Set_Cursor(1,0);
-		Lcd8_Write_String("Hola");
-		//Lcd8_Set_Cursor(2,0);
-		//ph_result = ph_avg();
-		//ftoa(ph_result, buffer);
+    {	
+		Lcd8_Set_Cursor(2, 4);
+		ph_result = ph_avg();
+		ftoa(ph_result, buffer);
 		//Lcd8_Write_String(buffer);
-		_delay_ms(10);
+		_delay_ms(50);
     }
 }
 
 void ftoa(double value, char * buffer)
 {
-	int aux_1 = 0, aux_2 = 0;
-	char buffer_1[2], buffer_2[2];
-	if(value < 10)
-	{
-		strcpy(buffer, "0");
+	//Separar el valor flotanto en dos enteros, uno conteniendo la parte entera y la otra la decimal
+	int aux_entero = 0, aux_decimal = 0;
+	char buffer_entero[2], buffer_decimal[2];
+	aux_entero = (int) value;
+	aux_decimal = (int)(value*10.0) - aux_entero*10;
+	//Colocamos el entero y el decimal en dos buffers de dos bits
+	if(aux_entero < 10){
+		Lcd8_Write_Char(' ');
 	}
-	aux_1 = (int) value;
-	itoa(aux_1, buffer_1, 10);
-	itoa(aux_2, buffer_2, 10);
-	//strcat(buffer, buffer_1);
-	strcat(buffer, ",");
-	strcat(buffer, buffer_2);
-
+	itoa(aux_entero, buffer_entero, 10);
+	Lcd8_Write_String(buffer_entero);
+	Lcd8_Write_Char(',');
+	itoa(aux_decimal, buffer_decimal, 10);
+	Lcd8_Write_String(buffer_decimal);
 }
+
 
 
 
@@ -98,7 +102,7 @@ double ph_avg()
 		adc_single_read(&adc_value);
 		acum += adc_value;
 	}
-	return (acum/50.0)*(14.0/1023);
+	return (double)(acum*14.0)/(1023.0*50.0);
 }
 
 
